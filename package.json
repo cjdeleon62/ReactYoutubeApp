@@ -7,7 +7,8 @@
     "clean": "rimraf public/*",
     "build": "npm run clean && SET NODE_ENV=production && webpack --config ./webpack.prod.config.js --progress --colors",
     "start-dev": "npm run clean && node ./src/server/app.js",
-    "start": "node ./src/server/app.js"
+    "start": "node ./src/server/app.js",
+    "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
