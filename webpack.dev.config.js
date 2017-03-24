@@ -1,29 +1,33 @@
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
 module.exports = {
   devtool: 'eval',
 
   entry: [
-    './src/index.js'
+    'webpack-hot-middleware/client',
+    './src/client/index'
   ],
 
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
-    publicPath: '/public'
+    publicPath: '/public/'
   },
+
   plugins: [
-     new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
+
   module: {
     loaders: [
       { test: /\.js?$/,
-        loader: 'babel-loader',
+        loader: 'babel',
         exclude: path.join(__dirname, 'node_modules') },
       { test: /\.scss?$/,
-        loader: 'style-loader!css-loader!sass-loader',
-        include: path.join(__dirname, 'src', 'styles') },
+        loader: 'style!css!sass',
+        include: path.join(__dirname, 'src','client','styles') },
       { test: /\.png$/,
         loader: 'file' },
       { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
